@@ -1,0 +1,43 @@
+<div
+  class="form-container"
+  style="background-image: url('assets/image/form-back-image.jpg')"
+>
+  <form class="contact-form" (submit)="sendEmail($event)">
+    <label for="first-name">First Name:</label>
+    <input
+      type="text"
+      id="first-name"
+      [(ngModel)]="firstName"
+      name="firstName"
+      required
+    />
+
+    <label for="last-name">Last Name:</label>
+    <input
+      type="text"
+      id="last-name"
+      [(ngModel)]="lastName"
+      name="lastName"
+      required
+    />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="email" name="email" required />
+
+    <label for="message">Message:</label>
+    <textarea
+      id="message"
+      [(ngModel)]="message"
+      name="message"
+      rows="4"
+      required
+    ></textarea>
+
+    <button type="submit" [disabled]="isSending">
+      {{ isSending ? "Invio in corso..." : "Submit" }}
+    </button>
+  </form>
+
+  <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+</div>

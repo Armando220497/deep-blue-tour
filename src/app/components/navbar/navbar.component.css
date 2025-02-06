@@ -1,0 +1,118 @@
+/* General navbar styling */
+.nav-bar {
+  font-family: "Playfair Display", serif;
+  text-transform: uppercase;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  background-color: #243f7a;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+}
+
+/* Navbar links container */
+.nav-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+/* Navbar links styling */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  text-align: center;
+  align-items: center;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Logout button container */
+.logout-container {
+  margin-left: auto;
+}
+
+/* Styling for the logout button */
+.logout-button {
+  background-color: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+/* Styling for the Login button */
+.login-button {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 80px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for the Login button */
+.login-button:hover {
+  background-color: #005cbb;
+  box-shadow: 0 4px 8px rgba(255, 64, 129, 0.3);
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* Active state for the Login button */
+.login-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(255, 64, 129, 0.3);
+}
+
+/* Focus styling for the Login button */
+.login-button:focus {
+  outline: none;
+  border: 2px solid #ff4081;
+}
+
+/* Menu button (visible only on mobile) */
+.menu-button {
+  display: none;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: #3f51b5;
+  padding: 10px;
+}
+
+/* Mobile menu links styling */
+.mobile-menu a {
+  color: white;
+  padding: 10px;
+}
+
+/* Logo styling */
+.img-logo {
+  width: 5vh;
+  height: 5vh;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+}

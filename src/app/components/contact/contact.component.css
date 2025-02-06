@@ -1,0 +1,53 @@
+/* Contact form - centers the form, applies background color, and adds padding */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+  justify-content: center;
+  background-color: #243f7ac1;
+  color: white;
+  padding: 5vh;
+  border-radius: 30px;
+}
+
+/* Form container - sets background image and sizes the container */
+.form-container {
+  height: 80vh;
+  padding-top: 20vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Form labels - adds spacing for clarity */
+.contact-form label {
+  margin-top: 10px;
+}
+
+/* Input and textarea fields - adds spacing, padding, font, and border */
+.contact-form input,
+.contact-form textarea {
+  margin-top: 5px;
+  padding: 10px;
+  font-family: "Open Sans", sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Submit button - styles the button with background color, font, and border */
+.contact-form button {
+  margin-top: 20px;
+  padding: 10px;
+  font-family: "Open Sans", sans-serif;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Button hover effect - changes background color when hovered */
+.contact-form button:hover {
+  background-color: #45a049;
+}

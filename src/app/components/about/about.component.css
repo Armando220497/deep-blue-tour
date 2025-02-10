@@ -1,8 +1,47 @@
-/* General typography settings for headings and paragraphs */
+/* Animazione fade-in */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-0 {
+  transition-delay: 0s;
+}
+.delay-100 {
+  transition-delay: 0.1s;
+}
+.delay-200 {
+  transition-delay: 0.2s;
+}
+.delay-300 {
+  transition-delay: 0.3s;
+}
+.delay-400 {
+  transition-delay: 0.4s;
+}
+.delay-500 {
+  transition-delay: 0.5s;
+}
+
+/* Typography */
+h1,
+h2,
 h3,
 h4,
 p {
   font-family: "Open Sans", sans-serif;
+}
+
+.welcome-container {
+  background-color: white;
+  border-radius: 80px;
+  padding: 2vh;
 }
 
 /* About section - centers content and adds padding */
@@ -24,23 +63,38 @@ p {
 /* About image - adjusts size and rounds corners */
 .about-image {
   width: 50%;
-  border-radius: 10px;
+  border-radius: 80px;
 }
 
 /* About text - aligns text to the left and restricts width */
 .about-text {
   text-align: left;
   max-width: 500px;
+  background-color: #2970db;
+  color: white;
+  padding: 4vh;
+  border-radius: 80px;
 }
 
 /* Mission, values, and team sections - adds background, padding, and rounded corners */
-.mission-section,
-.values-section,
+.mission-section {
+  background-color: white;
+  border-radius: 80px;
+  padding: 2vh;
+  margin-top: 2vh;
+}
+
+.values-section {
+  background-color: #2970db;
+  padding: 4vh;
+  margin-top: 4vh;
+  border-radius: 80px;
+}
 .team-section {
   margin-top: 50px;
   padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 10px;
+  background-color: white;
+  border-radius: 80px;
 }
 
 /* Values grid - responsive grid layout */
@@ -55,7 +109,7 @@ p {
 .value-card {
   background: white;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 80px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -64,5 +118,5 @@ p {
   width: 100%;
   max-width: 600px;
   margin-top: 20px;
-  border-radius: 10px;
+  border-radius: 80px;
 }

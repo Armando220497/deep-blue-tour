@@ -5,23 +5,21 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { GuestGuard } from './auth/guest.guard'; // Guard to prevent access to login if already authenticated
+import { GuestGuard } from './auth/guest.guard'; // Impedisce la registrazione a utenti autenticati
+import { AuthGuard } from './auth/auth.guard';
+import { ExtraOptions } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: '',
-    component: NavbarComponent, // Navbar as parent component for child routes
+    component: NavbarComponent,
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' }, // Default route redirection
-      { path: 'home', component: HomeComponent }, // Home page
-      { path: 'about', component: AboutComponent }, // About page
-      { path: 'contact', component: ContactComponent }, // Contact page
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'contact', component: ContactComponent },
     ],
   },
-  {
-    path: 'login',
-    component: LoginComponent,
-    canActivate: [GuestGuard], // Prevent access to login if already authenticated
-  },
-  { path: 'register', component: RegisterComponent }, // Registration page
+  { path: 'login', component: LoginComponent, canActivate: [GuestGuard] }, // Impedisce login se già autenticato
+  { path: 'register', component: RegisterComponent, canActivate: [GuestGuard] }, // Impedisce registrazione se già autenticato
 ];

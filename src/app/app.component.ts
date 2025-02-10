@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Router, NavigationEnd } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -13,4 +14,20 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'angular-web-site';
+
+  //scroll option
+
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.router.events.subscribe((event) => {
+      if (
+        event instanceof NavigationEnd &&
+        isPlatformBrowser(this.platformId)
+      ) {
+        window.scrollTo(0, 0);
+      }
+    });
+  }
 }

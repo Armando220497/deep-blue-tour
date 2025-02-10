@@ -1,21 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-// AuthService handles authentication logic for the application
-// - login(): Sends a request to authenticate the user with provided credentials
-// - isLoggedIn: Checks if the user is logged in by looking for a token in localStorage
-// - logout(): Removes the authentication token from localStorage, logging the user out
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:4200/home'; // API endpoint for login
+  private apiUrl = 'http://localhost:5000/api/login';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  // Checks if running in a browser environment
   private get isBrowser() {
     return (
       typeof window !== 'undefined' &&
@@ -23,24 +18,20 @@ export class AuthService {
     );
   }
 
-  // Login method: sends credentials to the backend for authentication
   login(email: string, password: string): Observable<any> {
-    const credentials = { email, password }; // Creates the payload with user credentials
-    return this.http.post<any>(this.apiUrl, credentials); // Sends POST request
+    console.log('Dati inviati:', { email, password });
+
+    return this.http.post<any>(this.apiUrl, { email, password });
   }
 
-  // Getter to check if the user is logged in by verifying the existence of a token in localStorage
   get isLoggedIn(): boolean {
-    if (this.isBrowser) {
-      return !!localStorage.getItem('userToken'); // Checks for a valid token in localStorage
-    }
-    return false;
+    return this.isBrowser ? !!localStorage.getItem('userToken') : false;
   }
 
-  // Logout method: removes the authentication token from localStorage
   logout(): void {
     if (this.isBrowser) {
-      localStorage.removeItem('userToken'); // Removes the token from localStorage
+      localStorage.removeItem('userToken');
+      this.router.navigate(['/login']);
     }
   }
 }

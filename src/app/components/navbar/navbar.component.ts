@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router'; // Importa Router
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,15 +25,15 @@ import { AuthService } from '../../auth/auth.service';
 export class NavbarComponent {
   menuOpen = false;
 
-  // Toggle the sidebar menu
+  // Inietta Router nel costruttore
+  constructor(public authService: AuthService, private router: Router) {}
+
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
 
-  constructor(public authService: AuthService) {} // Inject AuthService
-
-  // Logout the user by clearing token
   logout() {
-    this.authService.logout();
+    this.authService.logout(); // Effettua il logout
+    this.router.navigate(['/home']); // Reindirizza alla home
   }
 }

@@ -1,3 +1,13 @@
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+p,
+label {
+  font-family: "Open Sans", sans-serif;
+}
+
 /* Contact form - centers the form, applies background color, and adds padding */
 .contact-form {
   display: flex;
@@ -13,7 +23,7 @@
 
 /* Form container - sets background image and sizes the container */
 .form-container {
-  height: 80vh;
+  height: 100vh;
   padding-top: 20vh;
   background-size: cover;
   background-position: center;

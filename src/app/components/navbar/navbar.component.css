@@ -5,7 +5,7 @@
   padding: 0 20px;
   display: flex;
   align-items: center;
-  background-color: #243f7a;
+  background-color: #1463b9;
   justify-content: space-between;
   width: 100%;
   position: fixed;
@@ -37,42 +37,65 @@
   margin-left: auto;
 }
 
-/* Styling for the logout button */
-.logout-button {
-  background-color: transparent;
+/* Stile base per i pulsanti */
+/* Contenitore dei pulsanti */
+.logout-container {
+  display: flex;
+  gap: 10px; /* Distanza tra i pulsanti */
+  align-items: center;
+  margin-left: auto;
+}
+
+/* Stile base per i pulsanti */
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  padding: 10px 15px;
+  transition: all 0.3s ease-in-out;
   border: none;
-  color: red;
   cursor: pointer;
+  outline: none;
+  gap: 8px;
 }
 
-/* Styling for the Login button */
-.login-button {
-  font-size: 10px;
-  font-weight: 500;
-  text-transform: uppercase;
-  padding: 12px 24px;
-  border-radius: 80px;
-  transition: all 0.3s ease;
+/* Pulsante Logout - ROSSO */
+button[color="warn"] {
+  background-color: transparent;
+  color: red;
 }
 
-/* Hover effect for the Login button */
-.login-button:hover {
-  background-color: #005cbb;
-  box-shadow: 0 4px 8px rgba(255, 64, 129, 0.3);
-  transform: translateY(-2px);
+button[color="warn"]:hover {
+  background-color: rgba(211, 47, 47, 0.1);
+}
+
+/* Pulsante Login - ROSA */
+button[color="accent"] {
+  background-color: transparent;
+  color: rgb(0, 253, 0);
+}
+
+button[color="accent"]:hover {
+  background-color: rgba(255, 64, 129, 0.1);
+}
+
+/* Pulsante Registrati - VERDE */
+button[color="primary"] {
+  background-color: transparent;
   color: white;
 }
 
-/* Active state for the Login button */
-.login-button:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 4px rgba(255, 64, 129, 0.3);
+button[color="primary"]:hover {
+  background-color: rgba(76, 175, 80, 0.1);
 }
 
-/* Focus styling for the Login button */
-.login-button:focus {
-  outline: none;
-  border: 2px solid #ff4081;
+/* Effetto su mobile */
+@media (max-width: 768px) {
+  button {
+    width: auto;
+    padding: 8px 12px;
+  }
 }
 
 /* Menu button (visible only on mobile) */

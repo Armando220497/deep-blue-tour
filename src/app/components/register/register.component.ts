@@ -5,7 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-register',
@@ -18,10 +19,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    NavbarComponent,
   ],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'], // Fixed typo in 'styleUrls' (plural)
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
   private http = inject(HttpClient);

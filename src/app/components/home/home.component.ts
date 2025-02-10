@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { NgForOf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -20,4 +21,9 @@ export class HomeComponent {
     { title: 'Sorrento', image: 'assets/image/sorrento.jpg' },
     { title: 'Procida', image: 'assets/image/procida.jpg' },
   ];
+
+  constructor(private router: Router) {}
+  goToContact() {
+    this.router.navigate(['/contact']);
+  }
 }

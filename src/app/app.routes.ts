@@ -8,6 +8,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { GuestGuard } from './auth/guest.guard'; // Impedisce la registrazione a utenti autenticati
 import { AuthGuard } from './auth/auth.guard';
 import { ExtraOptions } from '@angular/router';
+import { AlbumComponent } from './components/album/album.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,7 @@ export const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
+      { path: 'album', component: AlbumComponent },
     ],
   },
   { path: 'login', component: LoginComponent, canActivate: [GuestGuard] }, // Impedisce login se già autenticato

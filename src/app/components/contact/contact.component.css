@@ -61,3 +61,32 @@ label {
 .contact-form button:hover {
   background-color: #45a049;
 }
+
+/*fade-in */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*fade-in only for the form */
+.contact-form {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* messagge sucess */
+.success {
+  color: green;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* message error*/
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}

@@ -31,6 +31,19 @@ p {
   font-size: 8vh;
   text-align: center;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  animation: fadeInUp 1.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .blue-word {
@@ -46,6 +59,10 @@ p {
 .reviews-container {
   text-align: center;
   padding: 5vh 10vw;
+  background-color: white;
+  background-color: white;
+  border-radius: 80px;
+  margin: 4vh;
 }
 
 .reviews {
@@ -91,37 +108,96 @@ p {
 .card-container {
   text-align: center;
   padding: 10vh 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 80px;
+  margin: 4vh;
 }
+
+.section-title {
+  color: #243f7a;
+}
+
+/* Card Grid */
+.card-grid {
+  display: flex;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Card */
 
 .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  width: 250px;
+  height: 300px;
+  perspective: 1000px; /* Effetto 3D */
+  cursor: pointer;
+}
+
+/* card flip*/
+.card-inner {
   width: 100%;
   height: 100%;
-  text-align: center;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
 }
 
-.card:hover {
-  transform: scale(1.05);
+/* Card flipped */
+.card-inner.flipped {
+  transform: rotateY(180deg);
 }
 
-.card-image {
+/* Card front and back */
+.card-front,
+.card-back {
   width: 100%;
-  height: 80%;
-  object-fit: cover;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+}
+
+/* Card Front */
+.card-front {
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-front img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
 }
 
 .card-title {
-  padding: 1vh;
-  font-size: 2.5vh;
+  font-size: 1.5rem;
   font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Card back */
+.card-back {
+  background: #007bff;
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-size: 1rem;
 }
 
 /* Button Styling */
@@ -176,4 +252,24 @@ button:hover {
 
 .text-container {
   padding: 3vh;
+}
+
+/* Media Query per schermi più piccoli */
+@media screen and (max-width: 1024px) {
+  mat-grid-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  mat-grid-list {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
 }

@@ -120,3 +120,22 @@ p {
   margin-top: 20px;
   border-radius: 80px;
 }
+
+@media screen and (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-image {
+    order: -1;
+    width: 90%;
+    max-width: 100%;
+  }
+
+  .about-text {
+    text-align: center;
+    max-width: 100%;
+    padding: 3vh;
+  }
+}

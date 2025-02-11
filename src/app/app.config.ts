@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
+  withFetch,
 } from '@angular/common/http';
 
 import { routes } from './app.routes';
@@ -18,6 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withFetch(), withInterceptorsFromDi()),
   ],
 };

@@ -1,97 +1,115 @@
 <div class="top-image">
   <img src="assets/image/top-image.jpg" alt="Top Image" />
-  <h1 class="main-title">DEEP<span class="blue-word">BLUE</span> TOUR</h1>
+  <h1 class="main-title" @fadeInUp>
+    DEEP<span class="blue-word">BLUE</span> TOUR
+  </h1>
 </div>
 
 <div class="card-container">
-  <h2 style="color: #243f7a">Le nostre destinazioni</h2>
-  <mat-grid-list cols="4" rowHeight="1:1" gutterSize="20px">
-    <mat-grid-tile *ngFor="let card of cards">
-      <div class="card">
-        <img class="card-image" [src]="card.image" alt="Card Image" />
-        <h3 class="card-title">{{ card.title }}</h3>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-  <div class="info-button">
-    <button mat-flat-button (click)="goToContact()">Informazioni</button>
-  </div>
-
-  <div class="first-banner-container">
-    <mat-grid-list cols="3" rowHeight="1:01" gutterSize="0px">
-      <mat-grid-tile colspan="2">
-        <img
-          class="third-image"
-          src="assets/image/third-image.jpg"
-          alt="Third Image"
-        />
-      </mat-grid-tile>
-      <mat-grid-tile class="text-title" colspan="1">
-        <div class="text-container">
-          <h2>Le Perle del Mare Ti Aspettano</h2>
-          <h4>Sali a bordo per esplorare destinazioni iconiche</h4>
+  <div class="card-grid">
+    <div
+      class="card"
+      *ngFor="let card of cards"
+      (click)="flipCard(card)"
+      (mouseenter)="onHover(card, true)"
+      (mouseleave)="onHover(card, false)"
+    >
+      <div class="card-inner" [class.flipped]="card.flipped">
+        <!-- Lato frontale -->
+        <div class="card-front">
+          <img class="card-image" [src]="card.image" alt="Card Image" />
+          <h3 class="card-title">{{ card.title }}</h3>
         </div>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </div>
 
-  <div class="reviews-container">
-    <h2 style="color: #243f7a">Cosa dicono di noi</h2>
-    <div class="reviews">
-      <div class="review-card">
-        <img
-          src="assets/image/user1.jpg"
-          alt="Foto recensore"
-          class="review-avatar"
-        />
-        <p class="review-text">
-          "Esperienza fantastica! Tour organizzato benissimo, paesaggi
-          mozzafiato."
-        </p>
-        <h4 class="review-author">Marco Rossi</h4>
-      </div>
-
-      <div class="review-card">
-        <img
-          src="assets/image/user2.jpg"
-          alt="Foto recensore"
-          class="review-avatar"
-        />
-        <p class="review-text">
-          "Personale gentile e super disponibile. Consiglio vivamente!"
-        </p>
-        <h4 class="review-author">Giulia Bianchi</h4>
-      </div>
-
-      <div class="review-card">
-        <img
-          src="assets/image/user3.jpg"
-          alt="Foto recensore"
-          class="review-avatar"
-        />
-        <p class="review-text">
-          "Bellissimo tour! Barca comoda e luoghi meravigliosi."
-        </p>
-        <h4 class="review-author">Luca Verdi</h4>
+        <!-- Lato posteriore -->
+        <div class="card-back">
+          <p class="card-description">{{ card.description }}</p>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="second-banner-container">
-    <mat-grid-list class="" cols="3" rowHeight="1:01" gutterSize="0px">
-      <mat-grid-tile class="text-title" colspan="1">
-        <div class="text-container">
-          <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-          <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-        </div>
-      </mat-grid-tile>
-      <mat-grid-tile colspan="2">
-        <img
-          class="third-image"
-          src="assets/image/fourth-image.jpg"
-          alt="Third Image"
-        />
-      </mat-grid-tile>
-    </mat-grid-list>
+<div class="info-button">
+  <button mat-flat-button (click)="goToContact()">Informazioni</button>
+</div>
+
+<!-- Primo Banner -->
+<div class="first-banner-container">
+  <mat-grid-list cols="3" rowHeight="1:01" gutterSize="0px">
+    <mat-grid-tile colspan="2">
+      <img
+        class="third-image"
+        src="assets/image/third-image.jpg"
+        alt="Third Image"
+      />
+    </mat-grid-tile>
+    <mat-grid-tile class="text-title" colspan="1">
+      <div class="text-container">
+        <h2>Le Perle del Mare Ti Aspettano</h2>
+        <h4>Sali a bordo per esplorare destinazioni iconiche</h4>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div class="reviews-container">
+  <h2 style="color: #243f7a">Cosa dicono di noi</h2>
+  <div class="reviews">
+    <div class="review-card">
+      <img
+        src="assets/image/user1.jpg"
+        alt="Foto recensore"
+        class="review-avatar"
+      />
+      <p class="review-text">
+        "Esperienza fantastica! Tour organizzato benissimo, paesaggi
+        mozzafiato."
+      </p>
+      <h4 class="review-author">Marco Rossi</h4>
+    </div>
+
+    <div class="review-card">
+      <img
+        src="assets/image/user2.jpg"
+        alt="Foto recensore"
+        class="review-avatar"
+      />
+      <p class="review-text">
+        "Personale gentile e super disponibile. Consiglio vivamente!"
+      </p>
+      <h4 class="review-author">Giulia Bianchi</h4>
+    </div>
+
+    <div class="review-card">
+      <img
+        src="assets/image/user3.jpg"
+        alt="Foto recensore"
+        class="review-avatar"
+      />
+      <p class="review-text">
+        "Bellissimo tour! Barca comoda e luoghi meravigliosi."
+      </p>
+      <h4 class="review-author">Luca Verdi</h4>
+    </div>
   </div>
+</div>
+
+<!-- Secondo Banner -->
+<div class="second-banner-container">
+  <mat-grid-list cols="3" rowHeight="1:01" gutterSize="0px">
+    <mat-grid-tile class="text-title" colspan="1">
+      <div class="text-container">
+        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+        <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <img
+        class="third-image"
+        src="assets/image/fourth-image.jpg"
+        alt="Third Image"
+      />
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

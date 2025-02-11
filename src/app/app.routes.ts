@@ -19,7 +19,7 @@ export const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
-      { path: 'album', component: AlbumComponent },
+      { path: 'album', component: AlbumComponent, canActivate: [AuthGuard] }, // protetta
     ],
   },
   { path: 'login', component: LoginComponent, canActivate: [GuestGuard] }, // Impedisce login se già autenticato

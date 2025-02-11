@@ -6,7 +6,14 @@
       <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
       <a mat-button routerLink="/about" routerLinkActive="active">About</a>
       <a mat-button routerLink="/contact" routerLinkActive="active">Contact</a>
-      <a mat-button routerLink="/album" routerLinkActive="active">Album</a>
+
+      <a
+        mat-button
+        *ngIf="authService.isLoggedIn"
+        routerLink="/album"
+        routerLinkActive="active"
+        >Album</a
+      >
     </nav>
 
     <button mat-icon-button (click)="menuOpen = !menuOpen" class="menu-button">
@@ -15,7 +22,6 @@
   </div>
 
   <div class="logout-container">
-    <!-- Se l'utente è autenticato, mostra il pulsante Logout -->
     <button
       *ngIf="authService.isLoggedIn"
       mat-flat-button
@@ -25,7 +31,6 @@
       <mat-icon>logout</mat-icon>
     </button>
 
-    <!-- Se l'utente NON è autenticato, mostra Login e Registrati -->
     <button
       *ngIf="!authService.isLoggedIn"
       mat-flat-button

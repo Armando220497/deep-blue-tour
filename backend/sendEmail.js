@@ -1,12 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const axios = require("axios"); // HTTP requests library
-require("dotenv").config(); // Loads environment variables
+const axios = require("axios");
+require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(bodyParser.json()); // Middleware to parse JSON request body
+app.use(bodyParser.json());
 
 // Endpoint to send email using Mailtrap API
 app.post("/api/send", (req, res) => {

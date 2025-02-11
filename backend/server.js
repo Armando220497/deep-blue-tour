@@ -131,7 +131,7 @@ app.post("/api/send", async (req, res) => {
 
     let info = await transporter.sendMail({
       from: `"${name}" <${email}>`,
-      to: "ce8a953f294a9a@inbox.mailtrap.io", // Sostituisci con il destinatario reale
+      to: "ce8a953f294a9a@inbox.mailtrap.io", // cheange with the real one email of destination
       subject: "Nuovo Messaggio dal Form Contatti",
       text: message,
     });

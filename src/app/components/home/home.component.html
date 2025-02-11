@@ -15,13 +15,13 @@
       (mouseleave)="onHover(card, false)"
     >
       <div class="card-inner" [class.flipped]="card.flipped">
-        <!-- Lato frontale -->
+        <!-- front -->
         <div class="card-front">
           <img class="card-image" [src]="card.image" alt="Card Image" />
           <h3 class="card-title">{{ card.title }}</h3>
         </div>
 
-        <!-- Lato posteriore -->
+        <!-- back -->
         <div class="card-back">
           <p class="card-description">{{ card.description }}</p>
         </div>
@@ -34,7 +34,7 @@
   <button mat-flat-button (click)="goToContact()">Informazioni</button>
 </div>
 
-<!-- Primo Banner -->
+<!-- First Banner -->
 <div class="first-banner-container">
   <mat-grid-list cols="3" rowHeight="1:01" gutterSize="0px">
     <mat-grid-tile colspan="2">
@@ -95,7 +95,7 @@
   </div>
 </div>
 
-<!-- Secondo Banner -->
+<!-- Second Banner -->
 <div class="second-banner-container">
   <mat-grid-list cols="3" rowHeight="1:01" gutterSize="0px">
     <mat-grid-tile class="text-title" colspan="1">

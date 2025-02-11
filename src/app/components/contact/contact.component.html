@@ -3,6 +3,8 @@
   style="background-image: url('assets/image/form-back-image.jpg')"
 >
   <form class="contact-form" (submit)="sendEmail($event)">
+    <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
     <label for="first-name">First Name:</label>
     <input
       type="text"
@@ -37,7 +39,4 @@
       {{ isSending ? "Invio in corso..." : "Submit" }}
     </button>
   </form>
-
-  <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
-  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 </div>

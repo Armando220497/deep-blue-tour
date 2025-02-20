@@ -1,6 +1,5 @@
 <mat-toolbar class="nav-bar" color="primary">
   <img class="img-logo" src="assets/logo/logo.jpg" alt="Logo" />
-
   <div class="nav-container">
     <nav class="nav-links">
       <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
@@ -8,17 +7,23 @@
       <a mat-button routerLink="/contact" routerLinkActive="active">Contact</a>
 
       <a
-        mat-button
         *ngIf="authService.isLoggedIn"
+        mat-button
         routerLink="/album"
         routerLinkActive="active"
         >Album</a
       >
-    </nav>
 
-    <button mat-icon-button (click)="menuOpen = !menuOpen" class="menu-button">
-      <mat-icon>menu</mat-icon>
-    </button>
+      <!-- Link per l'admin -->
+      <a
+        *ngIf="authService.userRole === 'admin'"
+        mat-button
+        routerLink="/admin"
+        routerLinkActive="active"
+        style="color: red"
+        >Admin Dashboard</a
+      >
+    </nav>
   </div>
 
   <div class="logout-container">
@@ -50,4 +55,5 @@
     </button>
   </div>
 </mat-toolbar>
+
 <router-outlet></router-outlet>

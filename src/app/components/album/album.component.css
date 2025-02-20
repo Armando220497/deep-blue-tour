@@ -1,6 +1,138 @@
+/* Text style */
+h1,
+h2,
+h3,
+h4,
+p {
+  font-family: "Open Sans", sans-serif;
+}
+
+.album-title {
+  padding-top: 10vh;
+  text-align: center;
+}
 .album-container {
   display: flex;
-
-  padding: 150px;
+  justify-content: space-around;
+  padding: 50px;
   height: 100vh;
+  flex-wrap: wrap;
+}
+
+.album-card {
+  width: 300px;
+  height: 400px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  background-color: #fff;
+}
+
+.album-cover {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.album-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.album-date {
+  font-size: 14px;
+  color: #555;
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.download-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Stili per il background del modal */
+/* Modal e overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Sfondo scuro per il resto della pagina */
+  display: flex;
+  justify-content: center; /* Centra orizzontalmente */
+  align-items: center; /* Centra verticalmente */
+  z-index: 1000;
+}
+
+/* Contenuto del modal */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+  max-width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Altri stili del modal */
+}
+
+/* Stile per il campo di input */
+input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  outline: none;
+}
+
+/* Cambia il colore del bordo dell'input quando è attivo */
+input[type="text"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Stile per i bottoni */
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button.cancel-btn {
+  background-color: #ccc;
+  margin-left: 10px;
+}
+
+button.cancel-btn:hover {
+  background-color: #888;
 }

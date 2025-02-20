@@ -1,3 +1,5 @@
+import { AdminGuard } from './auth/admin.guard';
+
 import { Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
@@ -9,6 +11,7 @@ import { GuestGuard } from './auth/guest.guard'; // Impedisce la registrazione a
 import { AuthGuard } from './auth/auth.guard';
 import { ExtraOptions } from '@angular/router';
 import { AlbumComponent } from './components/album/album.component';
+import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component'; // Component per l'admin
 
 export const routes: Routes = [
   {
@@ -20,6 +23,11 @@ export const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'album', component: AlbumComponent, canActivate: [AuthGuard] }, // protetta
+      {
+        path: 'admin',
+        component: DashboardAdminComponent,
+        canActivate: [AdminGuard],
+      }, // Nuova rotta per l'admin
     ],
   },
   { path: 'login', component: LoginComponent, canActivate: [GuestGuard] }, // Impedisce login se già autenticato

@@ -1,0 +1,37 @@
+/* Text style */
+h1,
+h2,
+h3,
+h4,
+p,
+mat-label {
+  font-family: "Open Sans", sans-serif;
+}
+
+.admin-create-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+mat-card {
+  width: 400px;
+  padding: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+input[type="file"] {
+  display: block;
+  margin-top: 10px;
+}

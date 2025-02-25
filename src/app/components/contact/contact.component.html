@@ -2,6 +2,8 @@
   class="form-container"
   style="background-image: url('assets/image/form-back-image.jpg')"
 >
+  <h1 class="contact-title">Contattaci e organizzeremo insieme il tuo tour!</h1>
+
   <form class="contact-form" (submit)="sendEmail($event)">
     <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
     <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>

@@ -23,7 +23,8 @@
 
         <!-- back -->
         <div class="card-back">
-          <p class="card-description">{{ card.description }}</p>
+          <h3 class="card-description">{{ card.description }}</h3>
+          <button (click)="goToContact()">Contattaci</button>
         </div>
       </div>
     </div>
@@ -95,7 +96,6 @@
   </div>
 </div>
 
-<!-- Second Banner -->
 <!-- Second Banner -->
 <div class="second-banner-container">
   <mat-grid-list cols="3" rowHeight="1:01" gutterSize="0px">

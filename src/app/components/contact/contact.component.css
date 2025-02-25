@@ -8,6 +8,11 @@ label {
   font-family: "Open Sans", sans-serif;
 }
 
+.contact-title {
+  text-align: center;
+  color: #243f7a;
+}
+
 /* Contact form - centers the form, applies background color, and adds padding */
 .contact-form {
   display: flex;
@@ -16,6 +21,8 @@ label {
   margin: auto;
   justify-content: center;
   background-color: #243f7ac1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
   color: white;
   padding: 5vh;
   border-radius: 30px;
@@ -24,7 +31,7 @@ label {
 /* Form container - sets background image and sizes the container */
 .form-container {
   height: 100vh;
-  padding-top: 20vh;
+  padding-top: 15vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -89,4 +96,11 @@ label {
   color: red;
   font-weight: bold;
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .contact-form {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }

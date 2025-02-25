@@ -13,6 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const SECRET_KEY = process.env.SECRET_KEY || "supersecretkey";
 
+// Middleware
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 app.use(express.json());
@@ -49,7 +50,76 @@ db.connect((err) => {
   console.log("✅ Connesso al database MySQL");
 });
 
-// **Endpoint per il caricamento delle immagini**
+// **Autenticazione e gestione utenti**
+app.post("/api/register", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ error: "Email e password sono obbligatorie" });
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const sql = "INSERT INTO users (email, password) VALUES (?, ?)";
+
+    db.query(sql, [email, hashedPassword], (err, result) => {
+      if (err) {
+        console.error("Errore durante la registrazione:", err);
+        return res.status(500).json({ error: "Errore nel server" });
+      }
+
+      const user = { id: result.insertId, email };
+
+      // Genera il token JWT
+      const token = jwt.sign(user, SECRET_KEY, { expiresIn: "1h" });
+
+      res.json({ message: "Registrazione completata!", token, user });
+    });
+  } catch (error) {
+    console.error("Errore hashing password:", error);
+    res.status(500).json({ error: "Errore nel server" });
+  }
+});
+
+app.post("/api/login", (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ error: "Inserisci email e password" });
+  }
+
+  const sql = "SELECT * FROM users WHERE email = ?";
+  db.query(sql, [email], (err, results) => {
+    if (err) {
+      console.error("Errore nel database:", err);
+      return res.status(500).json({ error: "Errore nel server" });
+    }
+    if (results.length === 0) {
+      return res.status(401).json({ error: "Email non registrata" });
+    }
+
+    const user = results[0];
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) {
+        console.error("Errore nella verifica della password:", err);
+        return res.status(500).json({ error: "Errore nel server" });
+      }
+      if (!isMatch) {
+        return res.status(401).json({ error: "Password errata" });
+      }
+
+      const token = jwt.sign(
+        { id: user.id, email: user.email, role: user.role },
+        SECRET_KEY,
+        { expiresIn: "1h" }
+      );
+      res.json({ message: "Login riuscito!", token, user });
+    });
+  });
+});
+
+// **Gestione immagini**
 app.post("/api/upload", upload.single("image"), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "Nessun file caricato" });
@@ -60,7 +130,7 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
   res.json({ imageUrl });
 });
 
-// **API ALBUMS**
+// **Gestione album fotografici**
 app.get("/api/albums", (req, res) => {
   db.query("SELECT * FROM albums", (err, results) => {
     if (err) {
@@ -77,7 +147,8 @@ app.post("/api/albums", (req, res) => {
     return res.status(400).json({ error: "Tutti i campi sono obbligatori" });
   }
 
-  const sql = `INSERT INTO albums (title, date, image_url, download_code, download_link) VALUES (?, ?, ?, ?, ?)`;
+  const sql =
+    "INSERT INTO albums (title, date, image_url, download_code, download_link) VALUES (?, ?, ?, ?, ?)";
   db.query(
     sql,
     [title, date, image_url, download_code, download_link],
@@ -93,77 +164,24 @@ app.post("/api/albums", (req, res) => {
 
 app.post("/api/albums/download", (req, res) => {
   const { download_code } = req.body;
-
   if (!download_code) {
     return res.status(400).json({ error: "Codice download mancante" });
   }
-
   const sql = "SELECT download_link FROM albums WHERE download_code = ?";
   db.query(sql, [download_code], (err, results) => {
     if (err) {
       console.error("Errore nella ricerca dell'album:", err);
       return res.status(500).json({ error: "Errore nel server" });
     }
-
     if (results.length === 0) {
       return res.status(404).json({ error: "Codice non valido" });
     }
-
-    let downloadLink = results[0].download_link;
-
-    // Modifica link di Dropbox per il download diretto
-    if (downloadLink.includes("dropbox.com")) {
-      downloadLink = downloadLink.replace("?dl=0", "?dl=1");
-    }
-
+    let downloadLink = results[0].download_link.replace("?dl=0", "?dl=1");
     res.json({ download_link: downloadLink });
   });
 });
 
-app.post("/api/login", (req, res) => {
-  const { email, password } = req.body;
-
-  if (!email || !password) {
-    return res.status(400).json({ error: "Inserisci email e password" });
-  }
-
-  const sql = "SELECT * FROM users WHERE email = ?";
-  db.query(sql, [email], (err, results) => {
-    if (err) {
-      console.error("Errore nel database:", err);
-      return res.status(500).json({ error: "Errore nel server" });
-    }
-
-    if (results.length === 0) {
-      return res.status(401).json({ error: "Email non registrata" });
-    }
-
-    const user = results[0];
-
-    // Confronto della password con hash bcrypt
-    bcrypt.compare(password, user.password, (err, isMatch) => {
-      if (err) {
-        console.error("Errore nella verifica della password:", err);
-        return res.status(500).json({ error: "Errore nel server" });
-      }
-
-      if (!isMatch) {
-        return res.status(401).json({ error: "Password errata" });
-      }
-
-      // Generazione del token JWT
-      const token = jwt.sign(
-        { id: user.id, email: user.email, role: user.role },
-        SECRET_KEY,
-        { expiresIn: "1h" }
-      );
-
-      res.json({ message: "Login riuscito!", token, user });
-    });
-  });
-});
-
-// **START SERVER UNA SOLA VOLTA**
+// **Avvio del server**
 app.listen(PORT, () => {
   console.log(`🚀 Server in ascolto su http://localhost:${PORT}`);
 });

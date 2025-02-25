@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
@@ -26,27 +27,36 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class RegisterComponent {
   private http = inject(HttpClient);
+  private router = inject(Router);
 
-  // Handle form submission
   onSubmit(form: NgForm) {
     if (form.valid) {
-      // Prepare user data to send to the server
       const userData = {
         email: form.value.email,
         password: form.value.password,
       };
 
-      // Make the HTTP request to register the user
-      this.http.post('http://localhost:5000/api/register', userData).subscribe({
-        next: (response) => {
-          console.log('Registration successful:', response);
-          alert('Registration completed successfully!');
-        },
-        error: (error) => {
-          console.error('Error during registration:', error);
-          alert('Error during registration');
-        },
-      });
+      this.http
+        .post<{ token: string; user: any }>(
+          'http://localhost:5000/api/register',
+          userData
+        )
+        .subscribe({
+          next: (response) => {
+            console.log('Registration successful:', response);
+
+            // Salva il token in localStorage
+            localStorage.setItem('userToken', response.token);
+            localStorage.setItem('user', JSON.stringify(response.user));
+
+            // Reindirizza alla home
+            this.router.navigate(['/home']);
+          },
+          error: (error) => {
+            console.error('Error during registration:', error);
+            alert('Errore durante la registrazione');
+          },
+        });
     }
   }
 }

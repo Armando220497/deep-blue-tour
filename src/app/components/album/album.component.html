@@ -1,26 +1,40 @@
-<div class="album-title">
-  <h1>Album Title</h1>
-  <p>This is a description of the album.</p>
-</div>
+<div
+  class="background-image"
+  style="background-image: url('assets/image/album-back-image.jpg')"
+>
+  <div class="album-title">
+    <h1>Benvenuto nella sezione <span style="color: #243f7a">Album</span></h1>
+    <h3>Qui potrai scaricare le foto della tua gita in barca.</h3>
+  </div>
 
-<div class="album-container">
-  <div class="album-card" *ngFor="let album of albums">
-    <img [src]="album.image_url" alt="{{ album.title }}" class="album-cover" />
-    <div class="album-info">
-      <p class="album-date">Gita del {{ album.date }}</p>
-      <button class="download-btn" (click)="openCodeModal(album.id)">
-        Download
-      </button>
+  <div class="album-container">
+    <div class="album-card" *ngFor="let album of albums">
+      <img
+        [src]="album.image_url"
+        alt="{{ album.title }}"
+        class="album-cover"
+      />
+      <div class="album-info">
+        <h4 class="album-date">
+          Gita del {{ album.date | date : "dd/MM/yyyy" }}
+        </h4>
+        <button class="download-btn" (click)="openCodeModal(album.id)">
+          Download
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Modal per inserire il codice -->
-<div *ngIf="isCodeModalOpen" class="modal">
-  <div class="modal-content">
-    <h3>Inserisci il codice a 5 cifre per sbloccare il contenuto!</h3>
-    <input type="text" [(ngModel)]="code" maxlength="5" />
-    <button (click)="downloadAlbum()">Scarica</button>
-    <button (click)="closeCodeModal()">Annulla</button>
+  <!-- Modal per inserire il codice -->
+  <div *ngIf="isCodeModalOpen" class="modal">
+    <div class="modal-content">
+      <h3>
+        Inserisci il codice a 5 cifre che ti ha fornito lo Staff per sbloccare
+        il contenuto!
+      </h3>
+      <input type="text" [(ngModel)]="code" maxlength="5" />
+      <button (click)="downloadAlbum()">Scarica</button>
+      <button (click)="closeCodeModal()">Annulla</button>
+    </div>
   </div>
 </div>
